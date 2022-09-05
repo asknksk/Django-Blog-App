@@ -53,18 +53,12 @@
           >Log In</a
         >
         <a
-          href=""
+          href="{% url 'register' %}"
           class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"
           >Sign Up</a
         >
         {% endif %}
-        {% comment %}
-        <a
-          href=""
-          class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"
-          >Sign Up</a
-        >
-        {% endcomment %}
+        
       </div>
       <!-- Mobile menu button -->
       <div class="md:hidden flex items-center">
@@ -97,7 +91,7 @@
       </li>
       <li>
         <a
-          href="#services"
+          href="{% url 'register' %}"
           class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300"
           >Sign Up</a
         >
