@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %} {% load tailwind_tags %} {% block content %} 
+{% extends 'base.html' %} {% load tailwind_tags %} {% block content %} 
 
 <form action="{% url 'user_login' %}" method="post">
   {% csrf_token %}

@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %} {% load tailwind_tags %} {% block content %}
+{% extends 'base.html' %} {% load tailwind_tags %} {% block content %}
 
 <form method="POST">
   {% csrf_token %}
@@ -8,6 +8,7 @@
     >
       <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
         <h2 class="mb-8 text-3xl text-center">Sign up</h2>
+        <form action="" method="post" enctype="multipart/form-data">
 
         <input
           type="text"
@@ -62,7 +63,16 @@
           placeholder="Confrim Pasword"
           required
         />
-        <button
+        <input
+        type="file"
+        class="block border border-grey-light w-full p-3 rounded mb-4"
+        id="profile_pic"
+        name="profile_pic"
+        placeholder="Profile Picture"
+        required
+      />
+               
+      <button
           type="submit"
           class="w-full text-center py-3 rounded bg-green-600 text-white hover:bg-green-800 focus:outline-none my-1"
         >
@@ -77,6 +87,7 @@
         >
           Log in
         </a>
+      </form>
       </div>
     </div>
   </div>
