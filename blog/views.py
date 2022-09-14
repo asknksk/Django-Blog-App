@@ -59,3 +59,16 @@ def blog_detail(request, id):
             comment.save()
             return redirect("post_detail", id)
     return render(request, 'blog/post_detail.html', {'post': blog, 'comment_form': comment_form, 'comments': comments})
+
+def like_post(request, id):
+    if request.method == "POST":
+        instance = Post.objects.get(id=id)
+      
+        if not instance.blog_like.filter(id=request.user.id).exists():
+            instance.blog_like.add(request.user)
+            instance.save() 
+            return render( request, 'blog/likes.html', context={'post':instance})
+        else:
+            instance.blog_like.remove(request.user)
+            instance.save() 
+            return render( request, 'blog/likes.html', context={'post':instance})

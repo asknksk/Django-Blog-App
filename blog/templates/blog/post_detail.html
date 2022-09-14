@@ -33,8 +33,9 @@
           <div class=" flex justify-between mt-2">            
             <p>
               <span class="p-1"><i class="fa-solid fa-comment"></i>{{" "}} {{ post.blog_comment }}</span>
-              <span class="p-1"><i class="fa-solid fa-eye"></i>{{" "}} 0</span>
-              <span class="p-1"><i class="fa-solid fa-heart"></i>{{" "}} 0</span>
+              <span class="p-1"><i class="fa-solid fa-eye"></i>{{" "}} {{ post.blog_view }}</span>
+              {% include "blog/likes.html" %}
+              {% comment %} <span class="p-1"><i class="fa-solid fa-heart"></i>{{" "}} {{ post.blog_like }}</span> {% endcomment %}
             </p>
             <div class="flex text-sm leading-5 text-gray-500">
               <time> {{ post.publish_date|timesince}} </time>

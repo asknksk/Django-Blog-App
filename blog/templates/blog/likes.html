@@ -1,0 +1,18 @@
+<button hx-post="{% url 'like_post' post.id %}" id="like-button" hx-target="#hey{{post.id}}" hx-swap="outerHTML" style="background-color: transparent; border: none;"  
+{% if user.is_authenticated %} 
+>
+    {% else %}
+        onclick="location.href='{% url 'post_detail' post.id %}'">            
+    {% endif %}
+    
+    {% if request.user in post.blog_like.all %}
+    <span class="p-1"><i class="fa-solid fa-heart" style="color: red;"></i>{{" "}} {{ post.blog_like }}</span>
+
+    {% else %}
+    <span class="p-1"><i class="fa-solid fa-heart" ></i>{{" "}} {{ post.blog_like }}</span>    
+    {% endif %}
+    
+{% comment %} <small style="color: white;">{{ post.likes.count }}</small> {% endcomment %}
+</button>
+</div>
+{% comment %} <span class="p-1"><i class="fa-solid fa-heart"></i>{{" "}} {{ post.blog_like }}</span> {% endcomment %}
