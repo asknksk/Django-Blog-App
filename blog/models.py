@@ -17,7 +17,9 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     slug = models.SlugField(max_length=200, unique=True)
     blog_comment = models.PositiveIntegerField(default=0)
-    
+    blog_like=models.PositiveIntegerField(default=0)
+    blog_view = models.IntegerField(default=0)
+
     class Meta:
         ordering = ['-publish_date']
 
@@ -32,3 +34,6 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['created_on']
+
+    def __str__(self):
+        return f"{self.post.title}"

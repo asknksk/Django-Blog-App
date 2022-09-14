@@ -15,8 +15,28 @@
     {% tailwind_css %}
   </head>
   <body>
-    {% include "navbar.html" %} 
+    {% include "navbar.html" %}
+    <div class="messages">
+      {% if messages %}
+      <div class="">
+          {% for message in messages %}
+          <p {% if message.tags %} class="text-center alert alert-{{ message.tags }}" {% endif %}>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+              {{ message }}
+          </p>
+          {% endfor %}
+      
+        </div>
+      {% endif %}
+  </div> 
     {% block content %} 
     {% endblock content %}
+    <script>
+      let element = document.querySelector('.messages');
+
+      setTimeout(function () {
+      element.style.display = 'none';
+      }, 3000);
+  </script>
   </body>
 </html>

@@ -7,8 +7,8 @@ class BlogForm(forms.ModelForm):
         fields = ('title', 'content', 'image', 'status')
         label = {"image":"Image URL"}
 
-# class CommentForm(forms.ModelForm):
-#     class Meta:
-#         model = Comment
-#         fields = ('body',)
-#         label = {"body":"Comment"}
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('body',)
+        label = {"body":"Comment"}

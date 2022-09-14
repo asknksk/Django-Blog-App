@@ -50,10 +50,10 @@
               <a href="#">
                 <img
                   class="h-10 w-10 rounded-full object-cover"
-                  {% if post.image %}
+                  {% if post.author.profile_pic.url %}
                     src= "{{ post.author.profile_pic.url }}"
                   {% else %}
-                    src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=40"
+                    src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png"
                   {% endif %}  
                   alt=""
                 />

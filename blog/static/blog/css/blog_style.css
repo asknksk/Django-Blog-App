@@ -1,0 +1,10 @@
+#messages{
+  display: absolute;
+  margin: 0px auto;
+  position: fixed;
+  transition: all 0.5s ease-in-out 0s;
+  z-index: 1031;
+  top: 75px;
+  right: 10px;
+  max-width: max-content;
+}

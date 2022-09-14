@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from blog.forms import BlogForm
-from .models import Post
+from blog.forms import BlogForm, CommentForm
+from .models import Comment, Post
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import (LoginRequiredMixin)
@@ -11,9 +11,9 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-publish_date')
     template_name = 'blog/index.html'
 
-class PostDetail(generic.DetailView):
-    model = Post
-    template_name = 'blog/post_detail.html'
+# class PostDetail(generic.DetailView):
+#     model = Post
+#     template_name = 'blog/post_detail.html'
 
 # @login_required
 # def blog_create(request):
@@ -39,3 +39,23 @@ class PostCreateView(LoginRequiredMixin, CreateView): # make sure you add your m
     def form_valid(self, form):     
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+@login_required
+def blog_detail(request, id):
+    blog = Post.objects.get(id=id)
+    comment_form = CommentForm()
+    comments = Comment.objects.filter(post=blog.id)
+    blog.blog_view += 1
+    blog.save()
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = blog
+            blog.blog_comment +=1 
+            comment.user = request.user
+            blog.blog_view -= 2
+            blog.save()
+            comment.save()
+            return redirect("post_detail", id)
+    return render(request, 'blog/post_detail.html', {'post': blog, 'comment_form': comment_form, 'comments': comments})

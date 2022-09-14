@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import  login, logout
 from django.contrib.auth.decorators import login_required
 from users.forms import UserProfileForm, UserRegisterForm
-
+from django.contrib import messages
 
 def register(request):
     form = UserRegisterForm()
@@ -17,7 +17,7 @@ def register(request):
             profile = form_profile.save(commit=False)
             profile.user = user
             profile.save()
-
+            messages.success(request, f'Your account has been created! You are now able to log in')
             login(request, user)
             return redirect('home')
     
